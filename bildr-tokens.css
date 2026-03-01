@@ -1,14 +1,14 @@
 /*
  * bildr.hub Design Tokens
  * Drop this file into any project to apply the bildr.hub brand.
- * Light mode (Earth) is default. Add class="dark" to <html> for Amber Dark mode.
+ * Light mode (Earth / community) is default. Add class="dark" to <html> for Amber Dark (corporate) mode.
  *
  * Fonts: Load Bungee + Plus Jakarta Sans + JetBrains Mono from Google Fonts:
  * <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
  */
 
 :root {
-  /* ── Colors (Light Mode — "Earth") ── */
+  /* ── Colors (Light Mode — "Earth" / Community) ── */
   --color-bg: oklch(0.95 0.01 70);           /* #f5f0eb */
   --color-card: oklch(0.99 0.005 70);        /* #fdfbf8 */
   --color-surface: oklch(0.92 0.012 70);     /* #ece5dc */
@@ -55,7 +55,7 @@
   --nav-height: 64px;
 }
 
-/* ── Dark Mode — "Amber Dark" ── */
+/* ── Dark Mode — "Amber Dark" / Corporate ── */
 .dark {
   --color-bg: oklch(0.18 0.01 50);           /* #1c1917 */
   --color-card: oklch(0.22 0.012 50);        /* #292524 */
