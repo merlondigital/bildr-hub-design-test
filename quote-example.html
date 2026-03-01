@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bildr.hub - Árajánlat - GreenLeaf Kft.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --color-text: #3d2814;
+      --color-text-2: #6b4423;
+      --color-text-3: #8b6144;
+      --color-accent: #a8763e;
+      --color-accent-dark: #7a5a2e;
+      --color-accent-light: #e8d5b8;
+      --color-border: #d4c5b5;
+      --color-border-light: #ece5dc;
+      --color-stripe: #fdfbf8;
+      --color-bg: #f5f0eb;
+      --font-display: "Bungee", sans-serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", "SF Mono", monospace;
+    }
+
+    html { font-size: 12px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.7;
+      background: #e8e0d6;
+    }
+
+    a { color: var(--color-text-2); text-decoration: underline; }
+    a:hover { color: var(--color-text); }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      padding: 24mm 22mm 28mm 22mm;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(61, 40, 20, 0.12);
+      position: relative;
+    }
+
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--color-text);
+      margin-bottom: 32px;
+    }
+
+    .doc-header-brand {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text);
+    }
+    .doc-header-brand .accent { color: var(--color-accent); }
+
+    .doc-header-right {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-2);
+      line-height: 1.8;
+    }
+    .doc-header-right a { color: var(--color-text-2); text-decoration: none; }
+
+    .doc-meta { margin-bottom: 36px; }
+
+    .doc-type {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--color-text);
+    }
+
+    .doc-info-row {
+      display: flex;
+      gap: 40px;
+      font-size: 12px;
+      color: var(--color-text-2);
+    }
+    .doc-info-row strong { font-weight: 600; color: var(--color-text); }
+
+    .doc-parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 36px;
+      padding: 20px 24px;
+      background: var(--color-stripe);
+      border-radius: 8px;
+      border: 1px solid var(--color-border-light);
+    }
+
+    .doc-party-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text);
+      margin-bottom: 10px;
+    }
+    .doc-party-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .doc-party-details { font-size: 12px; color: var(--color-text-2); line-height: 1.8; }
+
+    .doc-section {
+      margin-top: 28px;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--color-accent);
+    }
+    .doc-section h2 {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--color-text);
+    }
+    .doc-section-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-3);
+      margin-right: 8px;
+    }
+
+    .doc-body p { margin-bottom: 12px; font-size: 12px; line-height: 1.7; }
+    .doc-body ul, .doc-body ol { margin: 8px 0 12px 20px; font-size: 12px; line-height: 1.7; }
+    .doc-body li { margin-bottom: 4px; }
+    .doc-body strong { font-weight: 600; }
+
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 12px;
+    }
+    .doc-table thead th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--color-text);
+      color: #f5f0eb;
+    }
+    .doc-table thead th:first-child { border-radius: 6px 0 0 0; }
+    .doc-table thead th:last-child { border-radius: 0 6px 0 0; }
+    .doc-table tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--color-border-light);
+      vertical-align: top;
+    }
+    .doc-table tbody tr:nth-child(even) { background: var(--color-stripe); }
+    .doc-table tbody tr:last-child td { border-bottom: 2px solid var(--color-border); }
+    .doc-table .text-right { text-align: right; }
+    .doc-table .text-bold { font-weight: 600; }
+
+    .doc-total-row {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px 0;
+      margin-top: -8px;
+      margin-bottom: 24px;
+    }
+    .doc-total-box {
+      background: transparent;
+      border-top: 2px solid var(--color-accent);
+      padding: 14px 24px 14px 0;
+      text-align: right;
+    }
+    .doc-total-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-2);
+      margin-bottom: 4px;
+    }
+    .doc-total-amount { font-size: 24px; font-weight: 700; color: var(--color-text); }
+
+    .doc-highlight {
+      background: transparent;
+      border-left: 3px solid var(--color-accent);
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .doc-highlight strong { font-weight: 600; color: var(--color-text); }
+
+    .doc-signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+      padding-top: 24px;
+    }
+    .doc-signature-block { border-top: 1px solid var(--color-border); padding-top: 16px; }
+    .doc-signature-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-3);
+      margin-bottom: 40px;
+    }
+    .doc-signature-line { border-bottom: 1px solid var(--color-text); margin-bottom: 8px; height: 1px; }
+    .doc-signature-name { font-size: 14px; font-weight: 600; color: var(--color-text); margin-bottom: 2px; }
+    .doc-signature-role { font-family: var(--font-mono); font-size: 10px; color: var(--color-text-2); letter-spacing: 0.05em; }
+
+    .doc-accept {
+      margin-top: 32px;
+      padding: 24px;
+      background: var(--color-stripe);
+      border: 1px solid var(--color-border-light);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .doc-accept-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .doc-accept-desc { font-size: 12px; color: var(--color-text-2); margin-bottom: 20px; line-height: 1.6; }
+    .doc-accept-btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--color-accent);
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .doc-accept-btn:hover {
+      background: var(--color-accent-dark);
+      box-shadow: 0 4px 12px rgba(168, 118, 62, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .doc-footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .doc-footer-links { display: flex; gap: 24px; font-family: var(--font-mono); font-size: 11px; }
+    .doc-footer-links a { color: var(--color-text-2); text-decoration: underline; }
+    .doc-footer-page { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-3); }
+
+    .doc-divider { border: none; border-top: 1px solid var(--color-border-light); margin: 24px 0; }
+    .page-break { page-break-before: always; }
+
+    @media print {
+      html { font-size: 12px; }
+      body { background: #fff; margin: 0; padding: 0; }
+      .page { width: auto; min-height: auto; margin: 0; padding: 0; box-shadow: none; }
+      @page { size: A4; margin: 0; }
+      .doc-accept { display: none; }
+      .doc-parties, .doc-signatures, .doc-signature-block, .doc-highlight, .doc-table thead { page-break-inside: avoid; }
+      .doc-section { page-break-after: avoid; }
+      .doc-table tr { page-break-inside: avoid; }
+      .doc-footer { page-break-inside: avoid; }
+    }
+
+    @media screen { body { padding: 40px 0; } }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <span class="doc-header-brand">BILDR<span class="accent">.HUB</span></span>
+    </div>
+    <div class="doc-header-right">
+      <a href="https://bildr.hu">bildr.hu</a><br>
+      <a href="mailto:ai@bildr.hu">ai@bildr.hu</a>
+    </div>
+  </div>
+
+  <!-- DOCUMENT META -->
+  <div class="doc-meta">
+    <div class="doc-type">Árajánlat</div>
+    <h1 class="doc-title">E-commerce automatizáció</h1>
+    <div class="doc-info-row">
+      <span><strong>Dátum:</strong> 2026. március 1.</span>
+      <span><strong>Azonosító:</strong> BH-2026-003</span>
+      <span><strong>Érvényes:</strong> 30 napig</span>
+    </div>
+  </div>
+
+  <!-- PARTIES -->
+  <div class="doc-parties">
+    <div>
+      <div class="doc-party-label">Szolgáltató</div>
+      <div class="doc-party-name">BILDR HUB Kft.</div>
+      <div class="doc-party-details">
+        bildr.hub<br>
+        ai@bildr.hu<br>
+        Székhely: 1052 Budapest, Váci utca 12.<br>
+        Adószám: 12345678-2-41
+      </div>
+    </div>
+    <div>
+      <div class="doc-party-label">Megrendelő</div>
+      <div class="doc-party-name">GreenLeaf Kft.</div>
+      <div class="doc-party-details">
+        Kapcsolattartó: Szabó Anna<br>
+        anna.szabo@greenleaf.hu<br>
+        Székhely: 1134 Budapest, Dózsa György út 88.<br>
+        Adószám: 98765432-2-41
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: Projekt leírás -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">01</span>Projekt leírása</h2>
+  </div>
+  <div class="doc-body">
+    <p>
+      Összeszedtem, hogyan tudjuk a leghatékonyabban megoldani amit beszéltünk. A GreenLeaf webshopja jelenleg
+      manuális folyamatokra épül: a rendelések kézi feldolgozása, a készletfrissítés táblázatban, az ügyfél-értesítések
+      egyesével. Ez napi 3-4 óra adminisztrációt jelent, ami a csapat kapacitásának jelentős részét felemészti.
+    </p>
+    <p>
+      A célunk: a teljes rendelési folyamatot automatizáljuk a beérkezéstől a kiszállításig.
+      Az alábbi rendszert építjük fel:
+    </p>
+    <ul>
+      <li><strong>Automatikus rendelésfeldolgozás</strong> - a WooCommerce rendelés beérkezésekor az n8n workflow azonnal feldolgozza, kategorizálja és továbbítja a raktárba</li>
+      <li><strong>Számlakiállítás</strong> - a Billingo API-n keresztül automatikus számlakiállítás, PDF küldés az ügyfélnek</li>
+      <li><strong>Készletszinkronizáció</strong> - valós idejű szinkron a WooCommerce és a raktárkezelő rendszer között, automatikus értesítés alacsony készletnél</li>
+      <li><strong>Ügyfél-kommunikáció</strong> - automatikus email a rendelés állapotáról (visszaigazolás, feladás, kézbesítés), valamint Slack értesítések a belső csapatnak</li>
+      <li><strong>Napi riport</strong> - automatikus összesítő email a nap végén: rendelések, bevétel, készlethelyzet</li>
+    </ul>
+    <p>
+      A megoldás n8n workflow-kra épül, a meglévő rendszereidet (WooCommerce, Billingo, Google Sheets, Slack) köti össze.
+      Nem kell új szoftvert tanulni - minden a háttérben fut, a csapatod csak az eredményt látja.
+    </p>
+  </div>
+
+  <!-- SECTION: Árazás -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">02</span>Árazás</h2>
+  </div>
+  <div class="doc-body">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Tétel</th>
+          <th>Leírás</th>
+          <th class="text-right">Összeg</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Felmérés és rendszerterv</td>
+          <td>Jelenlegi folyamatok feltérképezése, integrációs terv, workflow design, technikai specifikáció</td>
+          <td class="text-right">120 000 Ft</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Rendelésfeldolgozás automatizáció</td>
+          <td>WooCommerce webhook, n8n workflow, kategorizálás, raktár-továbbítás, hibakezlés</td>
+          <td class="text-right">280 000 Ft</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Számlázás integráció</td>
+          <td>Billingo API csatlakozás, automatikus számlakiállítás, PDF generálás és küldés</td>
+          <td class="text-right">180 000 Ft</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Készletszinkron és értesítések</td>
+          <td>WooCommerce - raktár kétirányú szinkron, alacsony készlet riasztás, Slack és email értesítések</td>
+          <td class="text-right">220 000 Ft</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Napi riport rendszer</td>
+          <td>Automatikus összesítő: rendelések, bevétel, készlet. Email és Google Sheets export</td>
+          <td class="text-right">80 000 Ft</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Bevezetés és betanítás</td>
+          <td>Élesítés, 3 órás betanítás a csapatnak, kezelési dokumentáció, 2 hét support</td>
+          <td class="text-right">120 000 Ft</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="doc-total-row">
+      <div class="doc-total-box">
+        <div class="doc-total-label">Összesen (nettó)</div>
+        <div class="doc-total-amount">1 000 000 Ft</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT: Payment terms -->
+  <div class="doc-highlight">
+    <strong>Fizetési feltételek:</strong> 40% előleg a megrendeléskor (400 000 Ft), 30% a teszt környezet átadásakor (300 000 Ft),
+    30% az élesítés után (300 000 Ft). Fizetési határidő: 8 munkanap. Átutalással, a számlán feltüntetett bankszámlaszámra.
+  </div>
+
+  <!-- SECTION: Ütemezés -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">03</span>Ütemezés</h2>
+  </div>
+  <div class="doc-body">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Időszak</th>
+          <th>Feladat</th>
+          <th>Mérföldkő</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">1. hét</td>
+          <td>Felmérés, API hozzáférések, rendszerterv, workflow design</td>
+          <td>Rendszerterv elfogadása</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2-3. hét</td>
+          <td>Rendelésfeldolgozás és számlázás workflow-k fejlesztése, tesztelés sandbox-ban</td>
+          <td>Működő rendelési pipeline teszt környezetben</td>
+        </tr>
+        <tr>
+          <td class="text-bold">4. hét</td>
+          <td>Készletszinkron, értesítések, napi riport fejlesztése</td>
+          <td>Teljes rendszer teszt környezetben</td>
+        </tr>
+        <tr>
+          <td class="text-bold">5. hét</td>
+          <td>Élesítés, betanítás, dokumentáció, monitoring beállítás</td>
+          <td>Átadás és 2 hét support indulása</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION: Ami benne van -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">04</span>Amit kapsz</h2>
+  </div>
+  <div class="doc-body">
+    <ul>
+      <li><strong>Teljes automatizáció</strong> - a rendelés beérkezésétől a napi riportig minden fut, emberi beavatkozás nélkül</li>
+      <li><strong>Hibakezelés</strong> - ha valamelyik lépésnél hiba van (pl. Billingo nem elérhető), a rendszer újrapróbálja és értesít</li>
+      <li><strong>Monitoring dashboard</strong> - n8n-ben látod a futó workflow-kat, hibákat, statisztikákat</li>
+      <li><strong>Dokumentáció</strong> - kezelési útmutató, hogy a csapatod magabiztosan használja</li>
+      <li><strong>2 hét support</strong> - élesítés után 2 hétig gyors reagálás, ha bármi kérdés vagy hiba van</li>
+      <li><strong>Skálázható megoldás</strong> - ha később új webshopot vagy új értékesítési csatornát indítasz, a rendszer bővíthető</li>
+    </ul>
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- SIGNATURES -->
+  <div class="doc-signatures">
+    <div class="doc-signature-block">
+      <div class="doc-signature-label">Szolgáltató</div>
+      <div class="doc-signature-line"></div>
+      <div class="doc-signature-name">Mérő Leon</div>
+      <div class="doc-signature-role">BILDR HUB Kft.</div>
+    </div>
+    <div class="doc-signature-block">
+      <div class="doc-signature-label">Megrendelő</div>
+      <div class="doc-signature-line"></div>
+      <div class="doc-signature-name">Szabó Anna</div>
+      <div class="doc-signature-role">GreenLeaf Kft.</div>
+    </div>
+  </div>
+
+  <!-- ACCEPT SECTION -->
+  <div class="doc-accept">
+    <div class="doc-accept-title">Ajánlat elfogadása</div>
+    <div class="doc-accept-desc">
+      Az "Elfogadom" gombra kattintva jelzed, hogy az ajánlatot elfogadod
+      a fenti feltételek szerint. Ezután felvesszük veled a kapcsolatot a következő lépésekről.
+    </div>
+    <button class="doc-accept-btn" onclick="handleAccept()">ELFOGADOM</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="doc-footer-links">
+      <a href="https://bildr.hu">bildr.hu</a>
+      <a href="mailto:ai@bildr.hu">ai@bildr.hu</a>
+    </div>
+    <div class="doc-footer-page">1 / 1</div>
+  </div>
+
+</div>
+
+<script>
+  function handleAccept() {
+    const btn = document.querySelector('.doc-accept-btn');
+    btn.textContent = 'ELFOGADVA';
+    btn.style.background = '#16a34a';
+    btn.style.cursor = 'default';
+    btn.disabled = true;
+  }
+</script>
+
+</body>
+</html>
