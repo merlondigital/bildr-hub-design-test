@@ -296,6 +296,13 @@
     .doc-divider { border: none; border-top: 1px solid var(--color-border-light); margin: 24px 0; }
     .page-break { page-break-before: always; }
 
+    /* Page-break hints — needed outside @media print for html2pdf.js (renders in screen mode) */
+    .doc-parties, .doc-signatures, .doc-signature-block, .doc-highlight, .doc-table thead { page-break-inside: avoid; }
+    .doc-section { page-break-after: avoid; }
+    .doc-table tr { page-break-inside: avoid; }
+    .doc-footer { page-break-inside: avoid; }
+    .doc-total-row { page-break-inside: avoid; }
+
     @media print {
       html { font-size: 12px; }
       body { background: var(--color-bg); margin: 0; padding: 0; color: var(--color-text); }
@@ -597,8 +604,10 @@
     setPalette(lightPalette);
     page.style.background = '#ffffff';
 
-    // Strip screen-preview layout styles — let html2pdf.js handle sizing/margins
-    page.style.width = 'auto';
+    // Set width to exact PDF content area: A4 (210mm) - left (22mm) - right (22mm)
+    // This prevents html2canvas from rendering at viewport width then clipping/scaling
+    // IMPORTANT: do NOT set html2canvas.windowWidth — it causes left-side content cutoff
+    page.style.width = '166mm';
     page.style.minHeight = 'auto';
     page.style.margin = '0';
     page.style.padding = '0';
@@ -617,7 +626,8 @@
         unit: 'mm',
         format: 'a4',
         orientation: 'portrait'
-      }
+      },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
     html2pdf().set(opt).from(page).save().then(() => {
