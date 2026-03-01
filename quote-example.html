@@ -597,6 +597,13 @@
     setPalette(lightPalette);
     page.style.background = '#ffffff';
 
+    // Strip screen-preview layout styles — let html2pdf.js handle sizing/margins
+    page.style.width = 'auto';
+    page.style.minHeight = 'auto';
+    page.style.margin = '0';
+    page.style.padding = '0';
+    page.style.boxShadow = 'none';
+
     const opt = {
       margin: [24, 22, 28, 22],
       filename: 'bildr-hub-arajanlat-BH-2026-003.pdf',
@@ -617,6 +624,12 @@
       // Restore dark palette
       setPalette(darkPalette);
       page.style.background = '';
+      // Restore screen-preview layout styles
+      page.style.width = '';
+      page.style.minHeight = '';
+      page.style.margin = '';
+      page.style.padding = '';
+      page.style.boxShadow = '';
       actionSection.style.display = '';
     });
   }
