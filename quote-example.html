@@ -174,7 +174,7 @@
       text-align: left;
       padding: 10px 14px;
       background: var(--color-accent-dark);
-      color: #fef3c7;
+      color: var(--color-bg);
     }
     .doc-table thead th:first-child { border-radius: 6px 0 0 0; }
     .doc-table thead th:last-child { border-radius: 0 6px 0 0; }
@@ -267,7 +267,7 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       background: var(--color-accent-dark);
-      color: #fef3c7;
+      color: var(--color-bg);
       padding: 14px 40px;
       border-radius: 8px;
       border: none;
@@ -276,7 +276,7 @@
     }
     .doc-accept-btn:hover {
       background: var(--color-accent);
-      color: #1c1917;
+      color: var(--color-bg);
       box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
       transform: translateY(-1px);
     }
@@ -553,10 +553,49 @@
     btn.disabled = true;
   }
 
+  const lightPalette = {
+    '--color-text': '#3d2814',
+    '--color-text-2': '#6b4423',
+    '--color-text-3': '#8b6144',
+    '--color-accent': '#a8763e',
+    '--color-accent-dark': '#7a5a2e',
+    '--color-accent-light': '#e8d5b8',
+    '--color-border': '#d4c5b5',
+    '--color-border-light': '#ece5dc',
+    '--color-stripe': '#fdfbf8',
+    '--color-bg': '#f5f0eb',
+    '--color-card': '#ffffff'
+  };
+
+  const darkPalette = {
+    '--color-text': '#fef3c7',
+    '--color-text-2': '#d4b896',
+    '--color-text-3': '#8a7560',
+    '--color-accent': '#fbbf24',
+    '--color-accent-dark': '#d97706',
+    '--color-accent-light': '#44340a',
+    '--color-border': '#3d3530',
+    '--color-border-light': '#2e2825',
+    '--color-stripe': '#231f1c',
+    '--color-bg': '#1c1917',
+    '--color-card': '#292524'
+  };
+
+  function setPalette(palette) {
+    const root = document.documentElement;
+    for (const [key, value] of Object.entries(palette)) {
+      root.style.setProperty(key, value);
+    }
+  }
+
   function handleDownloadPDF() {
     const page = document.querySelector('.page');
     const actionSection = document.querySelector('.doc-accept');
     actionSection.style.display = 'none';
+
+    // Switch to light palette for PDF
+    setPalette(lightPalette);
+    page.style.background = '#ffffff';
 
     const opt = {
       margin: [24, 22, 28, 22],
@@ -565,7 +604,7 @@
       html2canvas: {
         scale: 2,
         useCORS: true,
-        backgroundColor: '#1c1917'
+        backgroundColor: '#ffffff'
       },
       jsPDF: {
         unit: 'mm',
@@ -575,6 +614,9 @@
     };
 
     html2pdf().set(opt).from(page).save().then(() => {
+      // Restore dark palette
+      setPalette(darkPalette);
+      page.style.background = '';
       actionSection.style.display = '';
     });
   }
