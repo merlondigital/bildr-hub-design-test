@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -296,23 +295,34 @@
     .doc-divider { border: none; border-top: 1px solid var(--color-border-light); margin: 24px 0; }
     .page-break { page-break-before: always; }
 
-    /* Page-break hints — needed outside @media print for html2pdf.js (renders in screen mode) */
-    .doc-parties, .doc-signatures, .doc-signature-block, .doc-highlight, .doc-table thead { page-break-inside: avoid; }
-    .doc-section { page-break-after: avoid; }
-    .doc-table tr { page-break-inside: avoid; }
-    .doc-footer { page-break-inside: avoid; }
-    .doc-total-row { page-break-inside: avoid; }
-
     @media print {
+      /* Force light (Earth) palette for print/PDF */
+      :root {
+        --color-text: #3d2814;
+        --color-text-2: #6b4423;
+        --color-text-3: #8b6144;
+        --color-accent: #a8763e;
+        --color-accent-dark: #7a5a2e;
+        --color-accent-light: #e8d5b8;
+        --color-border: #d4c5b5;
+        --color-border-light: #ece5dc;
+        --color-stripe: #fdfbf8;
+        --color-bg: #f5f0eb;
+        --color-card: #ffffff;
+      }
       html { font-size: 12px; }
-      body { background: var(--color-bg); margin: 0; padding: 0; color: var(--color-text); }
-      .page { width: auto; min-height: auto; margin: 0; padding: 0; box-shadow: none; background: var(--color-bg); }
-      @page { size: A4; margin: 0; }
+      body { background: white; margin: 0; padding: 0; }
+      .page {
+        width: auto; min-height: auto; margin: 0; padding: 0;
+        box-shadow: none; background: white;
+      }
+      @page { size: A4; margin: 24mm 22mm 28mm 22mm; }
       .doc-accept { display: none; }
       .doc-parties, .doc-signatures, .doc-signature-block, .doc-highlight, .doc-table thead { page-break-inside: avoid; }
       .doc-section { page-break-after: avoid; }
       .doc-table tr { page-break-inside: avoid; }
       .doc-footer { page-break-inside: avoid; }
+      .doc-total-row { page-break-inside: avoid; }
     }
 
     @media screen { body { padding: 40px 0; } }
@@ -596,52 +606,13 @@
   }
 
   function handleDownloadPDF() {
-    const page = document.querySelector('.page');
-    const actionSection = document.querySelector('.doc-accept');
-    actionSection.style.display = 'none';
-
-    // Switch to light palette for PDF
-    setPalette(lightPalette);
-    page.style.background = '#ffffff';
-
-    // Set width to exact PDF content area: A4 (210mm) - left (22mm) - right (22mm)
-    // This prevents html2canvas from rendering at viewport width then clipping/scaling
-    // IMPORTANT: do NOT set html2canvas.windowWidth — it causes left-side content cutoff
-    page.style.width = '166mm';
-    page.style.minHeight = 'auto';
-    page.style.margin = '0';
-    page.style.padding = '0';
-    page.style.boxShadow = 'none';
-
-    const opt = {
-      margin: [24, 22, 28, 22],
-      filename: 'bildr-hub-arajanlat-BH-2026-003.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff'
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: 'portrait'
-      },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
-
-    html2pdf().set(opt).from(page).save().then(() => {
-      // Restore dark palette
-      setPalette(darkPalette);
-      page.style.background = '';
-      // Restore screen-preview layout styles
-      page.style.width = '';
-      page.style.minHeight = '';
-      page.style.margin = '';
-      page.style.padding = '';
-      page.style.boxShadow = '';
-      actionSection.style.display = '';
-    });
+    // @media print CSS handles everything:
+    // - Light (Earth) palette via CSS variable overrides
+    // - .page layout reset (no padding/margin/shadow)
+    // - @page margins (24mm 22mm 28mm 22mm) applied per-page by browser
+    // - .doc-accept hidden
+    // - Page-break hints respected natively
+    window.print();
   }
 </script>
 
