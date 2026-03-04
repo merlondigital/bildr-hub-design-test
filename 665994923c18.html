@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bildr.hub - Technikai Ajánlat - G8 Naplóértékelő Rendszer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================================
+       BILDR.HUB A4 PROPOSAL TEMPLATE
+       G8 Naplóértékelő Rendszer - Technikai Ajánlat
+       Based on bildr.hub quote template, extended for multi-page proposal.
+       ================================================================ */
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-text: #3d2814;
+      --color-text-2: #6b4423;
+      --color-text-3: #8b6144;
+      --color-accent: #a8763e;
+      --color-accent-dark: #7a5a2e;
+      --color-accent-light: #e8d5b8;
+      --color-border: #d4c5b5;
+      --color-border-light: #ece5dc;
+      --color-stripe: #fdfbf8;
+      --color-bg: #f5f0eb;
+      --color-success: #16a34a;
+      --color-error: #dc2626;
+      --font-display: "Bungee", sans-serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", "SF Mono", monospace;
+    }
+
+    html {
+      font-size: 11.5px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.7;
+      background: #e8e0d6;
+    }
+
+    a {
+      color: var(--color-text-2);
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: var(--color-text);
+    }
+
+    /* --- A4 Page Container --- */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      padding: 24mm 22mm 28mm 22mm;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(61, 40, 20, 0.12);
+      position: relative;
+    }
+
+    /* --- Cover Page --- */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(297mm - 52mm);
+      text-align: center;
+    }
+
+    .cover-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .cover-logo-bildr {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text);
+    }
+
+    .cover-logo-bildr .accent {
+      color: var(--color-accent);
+    }
+
+    .cover-divider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+    }
+
+    .cover-logo-client {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-text);
+      border-radius: 10px;
+      padding: 10px 18px;
+      height: 48px;
+    }
+
+    .cover-logo-client img {
+      height: 28px;
+      width: auto;
+    }
+
+    .cover-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+    }
+
+    .cover-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      color: var(--color-text);
+      margin-bottom: 16px;
+      max-width: 500px;
+    }
+
+    .cover-subtitle {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-text-2);
+      margin-bottom: 60px;
+      max-width: 400px;
+    }
+
+    .cover-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-3);
+      line-height: 2;
+    }
+
+    .cover-meta strong {
+      color: var(--color-text-2);
+      font-weight: 600;
+    }
+
+    .cover-bottom-line {
+      position: absolute;
+      bottom: 28mm;
+      left: 22mm;
+      right: 22mm;
+      border-top: 2px solid var(--color-text);
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cover-bottom-brand {
+      font-family: var(--font-display);
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .cover-bottom-brand .accent {
+      color: var(--color-accent);
+    }
+
+    .cover-bottom-links {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-3);
+      display: flex;
+      gap: 20px;
+    }
+
+    .cover-bottom-links a {
+      color: var(--color-text-3);
+      text-decoration: none;
+    }
+
+    /* --- Header (non-cover pages) --- */
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-text);
+      margin-bottom: 28px;
+    }
+
+    .doc-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .doc-header-brand {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text);
+    }
+
+    .doc-header-brand .accent {
+      color: var(--color-accent);
+    }
+
+    .doc-header-right {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-3);
+      line-height: 1.8;
+    }
+
+    /* --- Section Headings --- */
+    .doc-section {
+      margin-top: 24px;
+      margin-bottom: 14px;
+      padding-left: 14px;
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .doc-section h2 {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--color-text);
+    }
+
+    .doc-section-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-3);
+      margin-right: 8px;
+    }
+
+    .doc-section-sub {
+      margin-top: 18px;
+      margin-bottom: 10px;
+    }
+
+    .doc-section-sub h3 {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    /* --- Body Content --- */
+    .doc-body p {
+      margin-bottom: 10px;
+      font-size: 11.5px;
+      line-height: 1.7;
+    }
+
+    .doc-body ul, .doc-body ol {
+      margin: 6px 0 10px 20px;
+      font-size: 11.5px;
+      line-height: 1.7;
+    }
+
+    .doc-body li {
+      margin-bottom: 3px;
+    }
+
+    .doc-body strong {
+      font-weight: 600;
+    }
+
+    .doc-body em {
+      font-style: italic;
+    }
+
+    /* --- Tables --- */
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px 0;
+      font-size: 11px;
+    }
+
+    .doc-table thead th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: left;
+      padding: 9px 12px;
+      background: var(--color-text);
+      color: #f5f0eb;
+    }
+
+    .doc-table thead th:first-child {
+      border-radius: 6px 0 0 0;
+    }
+
+    .doc-table thead th:last-child {
+      border-radius: 0 6px 0 0;
+    }
+
+    .doc-table tbody td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--color-border-light);
+      vertical-align: top;
+    }
+
+    .doc-table tbody tr:nth-child(even) {
+      background: var(--color-stripe);
+    }
+
+    .doc-table tbody tr:last-child td {
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .doc-table .text-right {
+      text-align: right;
+    }
+
+    .doc-table .text-center {
+      text-align: center;
+    }
+
+    .doc-table .text-bold {
+      font-weight: 600;
+    }
+
+    .doc-table .text-mono {
+      font-family: var(--font-mono);
+    }
+
+    .doc-table .not-gdpr {
+      color: var(--color-error);
+      font-weight: 700;
+    }
+
+    .doc-table .gdpr-ok {
+      color: var(--color-success);
+      font-weight: 600;
+    }
+
+    /* --- Highlight Box --- */
+    .doc-highlight {
+      background: transparent;
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 11.5px;
+      line-height: 1.7;
+    }
+
+    .doc-highlight strong {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .doc-highlight.warning {
+      border-left-color: var(--color-error);
+    }
+
+    .doc-highlight.success {
+      border-left-color: var(--color-success);
+    }
+
+    .doc-highlight.info {
+      border-left-color: var(--color-accent);
+      background: var(--color-stripe);
+    }
+
+    /* --- Feature List Grid --- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      margin: 10px 0 16px 0;
+      font-size: 11.5px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 5px 0;
+      line-height: 1.5;
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: var(--color-accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* --- Total Box --- */
+    .doc-total-row {
+      display: flex;
+      justify-content: flex-end;
+      padding: 14px 0;
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    .doc-total-box {
+      background: transparent;
+      border-top: 2px solid var(--color-accent);
+      border-radius: 0;
+      padding: 12px 20px 12px 0;
+      text-align: right;
+    }
+
+    .doc-total-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-2);
+      margin-bottom: 4px;
+    }
+
+    .doc-total-amount {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    /* --- Parties --- */
+    .doc-parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 28px;
+      padding: 18px 22px;
+      background: var(--color-stripe);
+      border-radius: 8px;
+      border: 1px solid var(--color-border-light);
+    }
+
+    .doc-party-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .doc-party-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .doc-party-details {
+      font-size: 11px;
+      color: var(--color-text-2);
+      line-height: 1.8;
+    }
+
+    /* --- Signatures --- */
+    .doc-signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+      padding-top: 20px;
+    }
+
+    .doc-signature-block {
+      border-top: 1px solid var(--color-border);
+      padding-top: 14px;
+    }
+
+    .doc-signature-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-3);
+      margin-bottom: 36px;
+    }
+
+    .doc-signature-line {
+      border-bottom: 1px solid var(--color-text);
+      margin-bottom: 8px;
+      height: 1px;
+    }
+
+    .doc-signature-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 2px;
+    }
+
+    .doc-signature-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-2);
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Footer --- */
+    .doc-footer {
+      margin-top: 36px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .doc-footer-links {
+      display: flex;
+      gap: 20px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    .doc-footer-links a {
+      color: var(--color-text-2);
+      text-decoration: underline;
+    }
+
+    .doc-footer-page {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-3);
+    }
+
+    /* --- Divider --- */
+    .doc-divider {
+      border: none;
+      border-top: 1px solid var(--color-border-light);
+      margin: 20px 0;
+    }
+
+    /* --- Page Break --- */
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* --- Accept Section --- */
+    .doc-accept {
+      margin-top: 28px;
+      padding: 22px;
+      background: var(--color-stripe);
+      border: 1px solid var(--color-border-light);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .doc-accept-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .doc-accept-desc {
+      font-size: 11px;
+      color: var(--color-text-2);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .doc-accept-btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--color-accent);
+      color: #fff;
+      padding: 12px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .doc-accept-btn:hover {
+      background: var(--color-accent-dark);
+      box-shadow: 0 4px 12px rgba(168, 118, 62, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* --- Stack/Tech badges --- */
+    .tech-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--color-stripe);
+      color: var(--color-text-2);
+      border: 1px solid var(--color-border);
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin: 2px 4px 2px 0;
+    }
+
+    /* --- Numbered list styled --- */
+    .next-steps-list {
+      counter-reset: step;
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+
+    .next-steps-list li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 11.5px;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .next-steps-list li:last-child {
+      border-bottom: none;
+    }
+
+    .next-steps-list li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* ================================================================
+       PRINT / PDF STYLES
+       ================================================================ */
+    @media print {
+      html {
+        font-size: 11.5px;
+      }
+
+      body {
+        background: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+
+      @page {
+        size: A4;
+        margin: 24mm 22mm 28mm 22mm;
+      }
+
+      .doc-accept {
+        display: none;
+      }
+
+      .doc-parties,
+      .doc-signatures,
+      .doc-signature-block,
+      .doc-highlight,
+      .doc-table thead {
+        page-break-inside: avoid;
+      }
+
+      .doc-section {
+        page-break-after: avoid;
+      }
+
+      .doc-table tr {
+        page-break-inside: avoid;
+      }
+
+      .doc-footer {
+        page-break-inside: avoid;
+      }
+
+      .doc-total-row {
+        page-break-inside: avoid;
+      }
+
+      .cover {
+        min-height: calc(297mm - 52mm);
+      }
+
+      .cover-bottom-line {
+        position: fixed;
+        bottom: 28mm;
+        left: 22mm;
+        right: 22mm;
+      }
+
+      a[href^="http"]::after,
+      a[href^="mailto"]::after {
+        content: none;
+      }
+    }
+
+    @media screen {
+      body {
+        padding: 40px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1: COVER
+     ============================================================ -->
+<div class="page">
+  <div class="cover">
+    <!-- Logos -->
+    <div class="cover-logos">
+      <span class="cover-logo-bildr">BILDR<span class="accent">.HUB</span></span>
+      <div class="cover-divider-dot"></div>
+      <div class="cover-logo-client">
+        <img src="g8-logo.svg" alt="alakvaltok.hu - G8 Program">
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="cover-label">Technikai ajánlat</div>
+    <h1 class="cover-title">G8 Naplóértékelő Rendszer</h1>
+    <p class="cover-subtitle">Dedikált webalkalmazás a G8 Hormon és Testsúly Kontroll Program résztvevőinek nyomon követésére</p>
+
+    <!-- Meta info -->
+    <div class="cover-meta">
+      <strong>Dátum:</strong> 2026. március<br>
+      <strong>Készítette:</strong> bildr.hub<br>
+      <strong>Készült:</strong> Goócz Géza / alakvaltok.hu részére
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="cover-bottom-line">
+    <span class="cover-bottom-brand">BILDR<span class="accent">.HUB</span></span>
+    <div class="cover-bottom-links">
+      <a href="https://bildr.hu">bildr.hu</a>
+      <a href="mailto:ai@bildr.hu">ai@bildr.hu</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 2: VEZETŐI ÖSSZEFOGLALÓ + MEGÉRTETTÜK AZ IGÉNYT
+     ============================================================ -->
+<div class="page page-break">
+
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <span class="doc-header-brand">BILDR<span class="accent">.HUB</span></span>
+    </div>
+    <div class="doc-header-right">
+      G8 Naplóértékelő Rendszer - Technikai Ajánlat
+    </div>
+  </div>
+
+  <!-- Parties -->
+  <div class="doc-parties">
+    <div>
+      <div class="doc-party-label">Szolgáltató</div>
+      <div class="doc-party-name">BILDR HUB Kft.</div>
+      <div class="doc-party-details">
+        bildr.hub<br>
+        <a href="mailto:ai@bildr.hu">ai@bildr.hu</a><br>
+        <a href="https://bildr.hu">bildr.hu</a>
+      </div>
+    </div>
+    <div>
+      <div class="doc-party-label">Megrendelő</div>
+      <div class="doc-party-name">Goócz Géza</div>
+      <div class="doc-party-details">
+        G8 Hormon és Testsúly Kontroll Program<br>
+        <a href="https://alakvaltok.hu">alakvaltok.hu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. Vezetői összefoglaló -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">01</span>Vezetői összefoglaló</h2>
+  </div>
+  <div class="doc-body">
+    <p>
+      A G8 Hormon és Testsúly Kontroll Program jelenleg Google Sheets-ben kezeli 200 résztvevő haladását, 10 hetes kurzusonként.
+      Ez a megoldás heti szinten <strong>3-4 napnyi admin munkát</strong> jelent - ami fenntarthatatlan és skálázási korlátot jelent a program növekedésében.
+    </p>
+    <p>
+      Ajánlatunk egy <strong>dedikált, telepíthető (PWA) webalkalmazás</strong> fejlesztésére szól, amely:
+    </p>
+    <ul>
+      <li>Lecseréli a Google Sheets alapú nyomon követést egy professzionális, céleszközre</li>
+      <li><strong>AI-alapú automatikus naplóértékelést</strong> biztosít a G8 szabályrendszer szerint</li>
+      <li>Offline is használható, push értesítésekkel segíti a résztvevőket</li>
+      <li>Oktatási anyag rendszerrel fokozatosan vezeti végig a kurzust</li>
+      <li>Admin/mentor dashboard-on keresztül átláthatóvá teszi az összes résztvevő haladását</li>
+    </ul>
+    <p>
+      Az alkalmazás modern, biztonságos technológiára épül (Next.js, Supabase, EU szerveren), és <strong>GDPR-kompatibilis</strong> egészségügyi adatkezeléssel működik.
+    </p>
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- 2. Megértettük az igényt -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">02</span>Megértettük az igényt</h2>
+  </div>
+  <div class="doc-body">
+    <p>Az alábbiakban visszatükrözzük a G8 program igényeit, ahogy azokat megértettük:</p>
+
+    <ol>
+      <li><strong>Napi naplózás:</strong> A résztvevők naponta rögzítik az étkezést, vízfogyasztást, mozgást, alvást, hangulatot és kiegészítőket. Jelenleg ezt kézzel, Sheets-ben teszik.</li>
+      <li><strong>Heti mérések:</strong> Testsúly, testösszetétel, derékkörfogat és fotó feltöltés. A szombat 10:00 utáni méréseket külön kezelni kell (piros jelölés).</li>
+      <li><strong>10 hetes struktúra:</strong> Minden kurzus 10 hét, hétfőtől vasárnapig. A rendszernek tükröznie kell ezt a struktúrát.</li>
+      <li><strong>AI értékelés:</strong> Szabályrendszer alapú elemzés, ami szöveges összefoglalót, százalékos pontszámot és fejlődési indikátort ad. Ez jelenleg kézzel történik.</li>
+      <li><strong>Mentor visszajelzés:</strong> Az értékelés mellett szöveges mentor visszajelzés is szükséges.</li>
+      <li><strong>Oktatási anyagok:</strong> Heti ütemezésben, fokozatosan feloldódó tartalmak.</li>
+      <li><strong>Több szerepkör:</strong> Kliens (résztvevő), mentor és admin szintű hozzáférés, egymástól elkülönítve.</li>
+      <li><strong>Mobil-first:</strong> A résztvevők elsősorban telefonról használják, offline is működnie kell, és push értesítéseket kell küldeni.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 3: A MEGOLDÁS - FUNKCIÓLISTA
+     ============================================================ -->
+<div class="page page-break">
+
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <span class="doc-header-brand">BILDR<span class="accent">.HUB</span></span>
+    </div>
+    <div class="doc-header-right">
+      G8 Naplóértékelő Rendszer - Technikai Ajánlat
+    </div>
+  </div>
+
+  <!-- 3. A megoldás -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">03</span>A megoldás</h2>
+  </div>
+  <div class="doc-body">
+    <p>A G8 Naplóértékelő egy telepíthető webalkalmazás (PWA), amely telefonra, tabletre és számítógépre egyaránt optimalizált. Az alábbiakban a teljes funkciólista:</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-item">
+      <div class="feature-icon">1</div>
+      <div><strong>Telepíthető alkalmazás (PWA)</strong> - telefonra, tabletre, számítógépre, app-szerű élmény</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">2</div>
+      <div><strong>Napi napló</strong> - étkezés, víz, mozgás, alvás, hangulat, kiegészítők rögzítése</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">3</div>
+      <div><strong>10 hetes struktúra</strong> - napi bontás (hétfőtől vasárnapig), heti összesítés</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">4</div>
+      <div><strong>Heti mérések</strong> - testsúly, testösszetétel, derékkörfogat, fotó feltöltés</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">5</div>
+      <div><strong>Offline használat</strong> - internet nélkül is rögzíthető, automatikus szinkronizáció</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">6</div>
+      <div><strong>Admin/mentor dashboard</strong> - kliens lista, naplómegtekintés, szűrés, összesítés</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">7</div>
+      <div><strong>AI értékelő modul</strong> - szabályrendszer alapú elemzés, szöveges összefoglaló, %-os pontszám, fejlődési indikátor</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">8</div>
+      <div><strong>Mentor visszajelzés</strong> - szöveges értékelés minden hétre</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">9</div>
+      <div><strong>Oktatási anyagok</strong> - fokozatos feloldás heti ütemezéssel</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">10</div>
+      <div><strong>Státuszkezelés</strong> - folyamatban, beküldve, értékelve állapotok</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">11</div>
+      <div><strong>Push értesítések</strong> - naplózási emlékeztető, értékelés kész jelzés</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">12</div>
+      <div><strong>Exportálás</strong> - heti PDF riport és CSV adatexport</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">13</div>
+      <div><strong>Haladási grafikonok</strong> - súly és méretek trendek vizualizálva</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">14</div>
+      <div><strong>Időbélyeg rendszer</strong> - created_at, updated_at, entered_for_date, heti szintű</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">15</div>
+      <div><strong>Szombati mérés szabály</strong> - 10:00 utáni mérés automatikus piros jelölés</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">16</div>
+      <div><strong>Szerepkör alapú hozzáférés</strong> - kliens, mentor, admin szintek elkülönítve</div>
+    </div>
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- 4. Technológiai stack -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">04</span>Technológiai stack</h2>
+  </div>
+  <div class="doc-body">
+    <p>A rendszer modern, bevált technológiákra épül, amelyek biztosítják a megbízhatóságot, a gyorsaságot és az EU-s adatkezelési megfelelőséget.</p>
+
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Réteg</th>
+          <th>Technológia</th>
+          <th>Szerep</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Frontend</td>
+          <td>
+            <span class="tech-badge">Next.js 15</span>
+            <span class="tech-badge">React 19</span>
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">Tailwind CSS</span>
+          </td>
+          <td>Felhasználói felület, PWA, offline támogatás</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Backend és adatbázis</td>
+          <td>
+            <span class="tech-badge">Supabase</span>
+            <span class="tech-badge">PostgreSQL</span>
+          </td>
+          <td>Adatbázis, autentikáció, valós idejű szinkronizáció, fájltárolás (EU-Frankfurt)</td>
+        </tr>
+        <tr>
+          <td class="text-bold">AI modul</td>
+          <td>
+            <span class="tech-badge">Választható</span>
+          </td>
+          <td>Naplóértékelés, szöveges elemzés (lásd AI összehasonlítás)</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Hosting</td>
+          <td>
+            <span class="tech-badge">Vercel</span>
+          </td>
+          <td>Alkalmazás hosting, szerver funkciók (EU)</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Offline</td>
+          <td>
+            <span class="tech-badge">Service Worker</span>
+            <span class="tech-badge">Dexie.js</span>
+          </td>
+          <td>PWA telepítés, offline adatrögzítés, automatikus szinkron</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 4: AI ÖSSZEHASONLÍTÁS + HAVI KÖLTSÉGEK
+     ============================================================ -->
+<div class="page page-break">
+
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <span class="doc-header-brand">BILDR<span class="accent">.HUB</span></span>
+    </div>
+    <div class="doc-header-right">
+      G8 Naplóértékelő Rendszer - Technikai Ajánlat
+    </div>
+  </div>
+
+  <!-- 5. AI szolgáltató összehasonlítás -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">05</span>AI szolgáltató összehasonlítás</h2>
+  </div>
+  <div class="doc-body">
+    <p>
+      Az AI modul felelős a naplóbejegyzések automatikus értékeléséért. Az alábbi táblázat a piacon elérhető legjobb modelleket hasonlítja össze,
+      200 fős kurzusonkénti becsült költséggel (10 hét x 200 értékelés = 2.000 elemzés).
+    </p>
+    <p>
+      <strong>Minőségi pontszám:</strong> Chatbot Arena Elo rangsor - független, felhasználói értékelésen alapuló mérőszám, ahol a magasabb érték jobb.
+      Referencia: a legjobb modell (Claude Opus 4.6) pontszáma 1496.
+    </p>
+
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Szolgáltató</th>
+          <th>Modell</th>
+          <th class="text-center">Minőség (Elo)</th>
+          <th class="text-right">Költség / kurzus</th>
+          <th class="text-center">GDPR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">OpenAI</td>
+          <td class="text-mono">GPT-5</td>
+          <td class="text-center">1458</td>
+          <td class="text-right">~9.600 Ft</td>
+          <td class="text-center gdpr-ok">Megfelelő</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Anthropic</td>
+          <td class="text-mono">Claude Sonnet 4.6</td>
+          <td class="text-center">~1450</td>
+          <td class="text-right">~17.500 Ft</td>
+          <td class="text-center gdpr-ok">Megfelelő</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Anthropic</td>
+          <td class="text-mono">Claude Haiku 4.5</td>
+          <td class="text-center">1404</td>
+          <td class="text-right">~5.800 Ft</td>
+          <td class="text-center gdpr-ok">Megfelelő</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Google</td>
+          <td class="text-mono">Gemini 3 Pro</td>
+          <td class="text-center">1486</td>
+          <td class="text-right">~12.900 Ft</td>
+          <td class="text-center gdpr-ok">Megfelelő</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Google</td>
+          <td class="text-mono">Gemini 3 Flash</td>
+          <td class="text-center">1470</td>
+          <td class="text-right">~3.200 Ft</td>
+          <td class="text-center gdpr-ok">Megfelelő</td>
+        </tr>
+        <tr>
+          <td class="text-bold">DeepSeek</td>
+          <td class="text-mono">V3.2</td>
+          <td class="text-center">1420</td>
+          <td class="text-right">~1.000 Ft</td>
+          <td class="text-center not-gdpr">NEM megfelelő</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><em>A modellek közti minőségi különbség a mi feladatunkra (strukturált naplóelemzés magyar nyelven) minimális - mindegyik kiválóan alkalmas.</em></p>
+  </div>
+
+  <div class="doc-highlight warning">
+    <strong>DeepSeek:</strong> Kínai vállalat, szerverei Kínában vannak, nem felel meg az EU GDPR követelményeinek. Egészségügyi adatok feldolgozására nem használható.
+  </div>
+
+  <div class="doc-highlight success">
+    <strong>Ajánlásunk: Gemini 3 Flash</strong> - a legjobb ár/minőség arány GDPR-megfelelő modellek közül (1470 Elo, ~3.200 Ft/kurzus).<br>
+    Alternatíva: <strong>Claude Haiku 4.5</strong> - kiváló magyar nyelvű kimenet (~5.800 Ft/kurzus).
+  </div>
+
+  <div class="doc-highlight info">
+    <strong>Fontos:</strong> Az AI költségeket közvetlenül a szolgáltatónak fizeti az ügyfél (nem a bildr.hub-nak). Segítünk a fiókok beállításában.
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- 6. Havi üzemeltetési költségek -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">06</span>Havi üzemeltetési költségek</h2>
+  </div>
+  <div class="doc-body">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Tétel</th>
+          <th class="text-right">Költség</th>
+          <th>Megjegyzés</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Supabase Pro</td>
+          <td class="text-right">~10.000 Ft/hó ($25)</td>
+          <td>Adatbázis, autentikáció, fájltárolás, EU-Frankfurt</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Vercel</td>
+          <td class="text-right">~8.000 Ft/hó ($20)</td>
+          <td>Hosting, szerver funkciók, EU</td>
+        </tr>
+        <tr>
+          <td class="text-bold">AI szolgáltató</td>
+          <td class="text-right">~3.200-17.500 Ft/kurzus</td>
+          <td>Szolgáltatótól függ (lásd fenti táblázat)</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Domain (opcionális)</td>
+          <td class="text-right">~5.000 Ft/év</td>
+          <td>Ha külön domain szükséges</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="doc-total-row">
+      <div class="doc-total-box">
+        <div class="doc-total-label">Havi alap (Supabase + Vercel)</div>
+        <div class="doc-total-amount">~18.000-20.000 Ft/hó</div>
+      </div>
+    </div>
+
+    <p><em>Ezeket a költségeket közvetlenül a szolgáltatóknak fizeti az ügyfél, nem a bildr.hub-nak. Segítünk a fiókok beállításában.</em></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 5: FEJLESZTÉSI DÍJ + GDPR + BIZTONSÁG
+     ============================================================ -->
+<div class="page page-break">
+
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <span class="doc-header-brand">BILDR<span class="accent">.HUB</span></span>
+    </div>
+    <div class="doc-header-right">
+      G8 Naplóértékelő Rendszer - Technikai Ajánlat
+    </div>
+  </div>
+
+  <!-- 7. Fejlesztési díj és ütemezés -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">07</span>Fejlesztési díj és ütemezés</h2>
+  </div>
+  <div class="doc-body">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Tétel</th>
+          <th>Részletek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Fejlesztési díj</td>
+          <td><strong style="font-size: 16px;">2.900.000 Ft</strong> (egyszeri, nettó)</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Fejlesztési idő</td>
+          <td>A szerződés aláírását követő <strong>4 hét</strong></td>
+        </tr>
+        <tr>
+          <td class="text-bold">Fizetési ütemezés</td>
+          <td><em>[Az ügyfél részletes fizetési ütemezése itt kerül kifejtésre]</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- 8. GDPR és adatvédelem -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">08</span>GDPR és adatvédelem</h2>
+  </div>
+  <div class="doc-body">
+    <p>A rendszer egészségügyi jellegű adatokat kezel (testsúly, étkezés, alvás), amelyek a GDPR 9. cikke szerint különleges adatkategóriába tartoznak. Ennek megfelelően az alábbi intézkedéseket alkalmazzuk:</p>
+
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Terület</th>
+          <th>Megvalósítás</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Jogalap</td>
+          <td>GDPR 9. cikk: <strong>kifejezett hozzájárulás</strong> a regisztrációnál</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Adattárolás</td>
+          <td>Supabase EU-Frankfurt - az adatok <strong>nem hagyják el az EU-t</strong></td>
+        </tr>
+        <tr>
+          <td class="text-bold">AI feldolgozás</td>
+          <td>Döntéstámogató eszközként működik az admin felületen. <strong>Személyes adatok (név, email) soha nem kerülnek az AI-hoz</strong> - anonim adatküldés.</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Adatfeldolgozói szerződések</td>
+          <td>Supabase, Vercel, AI szolgáltató - mindegyik rendelkezik GDPR-kompatibilis DPA-val</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Érintetti jogok</td>
+          <td>Hozzáférés, törlés, hordozhatóság, helyesbítés - mind megvalósítva az alkalmazásban</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Adatmegőrzés</td>
+          <td>Program időtartama + 1 év, utána <strong>automatikus törlés</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- 9. Biztonság -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">09</span>Biztonság</h2>
+  </div>
+  <div class="doc-body">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Biztonsági réteg</th>
+          <th>Megvalósítás</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Autentikáció</td>
+          <td>Email + jelszó alapú bejelentkezés (Supabase Auth)</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Jogosultsági szintek</td>
+          <td>Három szerepkör: <strong>kliens</strong> (résztvevő), <strong>mentor</strong>, <strong>admin</strong></td>
+        </tr>
+        <tr>
+          <td class="text-bold">Adatelkülönítés</td>
+          <td>Row Level Security (RLS): kliens A <strong>soha nem láthatja</strong> kliens B adatait</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Kommunikáció</td>
+          <td>HTTPS titkosítás minden kérésre</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Adatbázis titkosítás</td>
+          <td>At rest és in transit egyaránt titkosítva</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 6: KÖVETKEZŐ LÉPÉSEK + ALÁÍRÁS
+     ============================================================ -->
+<div class="page page-break">
+
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <span class="doc-header-brand">BILDR<span class="accent">.HUB</span></span>
+    </div>
+    <div class="doc-header-right">
+      G8 Naplóértékelő Rendszer - Technikai Ajánlat
+    </div>
+  </div>
+
+  <!-- 10. Következő lépések -->
+  <div class="doc-section">
+    <h2><span class="doc-section-num">10</span>Következő lépések</h2>
+  </div>
+  <div class="doc-body">
+    <p>A fejlesztés megkezdéséhez az alábbiakat kérjük tőled:</p>
+
+    <ul class="next-steps-list">
+      <li>Mérési mezők végleges listája (milyen mérőszámokat rögzítsenek a résztvevők)</li>
+      <li>Naplóstruktúra véglegesítése (milyen adatokat rögzítenek naponta, milyen formában)</li>
+      <li>AI szabályrendszer véglegesítése (pontozási kritériumok, értékelési szempontok)</li>
+      <li>Oktatási anyagok struktúrája (hány modul, milyen formátumok, heti bontás)</li>
+      <li>Felhasználói jogosultsági szintek véglegesítése (ki mit láthat és csinálhat)</li>
+      <li>AI szolgáltató választás (ajánlásunk: Gemini 3 Flash vagy Claude Haiku 4.5)</li>
+    </ul>
+  </div>
+
+  <div class="doc-highlight info">
+    <strong>Ami a mi dolgunk:</strong> A fentiek alapján elkészítjük a részletes rendszertervet, és a szerződés aláírását követő 4 héten belül átadjuk a működő alkalmazást. A teljes folyamat során folyamatos egyeztetést biztosítunk.
+  </div>
+
+  <hr class="doc-divider">
+
+  <!-- Signatures -->
+  <div class="doc-signatures">
+    <div class="doc-signature-block">
+      <div class="doc-signature-label">Szolgáltató</div>
+      <div class="doc-signature-line"></div>
+      <div class="doc-signature-name">bildr.hub</div>
+      <div class="doc-signature-role">BILDR HUB Kft.</div>
+    </div>
+    <div class="doc-signature-block">
+      <div class="doc-signature-label">Megrendelő</div>
+      <div class="doc-signature-line"></div>
+      <div class="doc-signature-name">Goócz Géza</div>
+      <div class="doc-signature-role">G8 Hormon és Testsúly Kontroll Program</div>
+    </div>
+  </div>
+
+  <!-- Accept section -->
+  <div class="doc-accept">
+    <div class="doc-accept-title">Ajánlat elfogadása</div>
+    <div class="doc-accept-desc">
+      Az "Elfogadom" gombra kattintva jelzed, hogy az ajánlatot elfogadod a fenti feltételek szerint.
+      Ezután felvesszük veled a kapcsolatot a következő lépésekről.
+    </div>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <button class="doc-accept-btn" onclick="window.print()">PDF LETÖLTÉS</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <div class="doc-footer-links">
+      <a href="https://bildr.hu">bildr.hu</a>
+      <a href="mailto:ai@bildr.hu">ai@bildr.hu</a>
+    </div>
+    <div class="doc-footer-page">2026. március</div>
+  </div>
+
+</div>
+
+</body>
+</html>
